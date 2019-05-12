@@ -1,0 +1,55 @@
+.filter-column {
+    position: relative;
+}
+
+.ff-card {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 4px;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.03), 0 5px 10px 0 rgba(0, 0, 0, 0.11);
+    background-color: #ffffff;
+    color: #333333;
+    font-size: 14px;
+    transition: height .15s ease-in-out;
+}
+
+.ff-card.expandable .inner {
+    max-height: 80px;
+    overflow: hidden;
+}
+
+.ff-card.expandable .expand-toggler {
+    display: block;
+    margin-top: 10px;
+}
+
+.ff-card.expandable.open .inner{
+    max-height: 100%;
+}
+
+.ff-card.filter-card {
+    margin-bottom: 12px;
+}
+
+.ff-card.filter-card .input-group-text {
+    font-size: 14px;
+}
+
+.ff-card.filter-card .title {
+    margin-bottom: 7px;
+    font-size: 16px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.75;
+    letter-spacing: normal;
+}
+
+.ff-card.filter-card .form-check {
+    height: 20px;
+    margin-bottom: 10px;
+}
+
+.ff-card.filter-card .form-check:last-child {
+    margin-bottom: 0;
+}

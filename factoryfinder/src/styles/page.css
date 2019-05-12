@@ -1,0 +1,13 @@
+.ff-title {
+    color: #333333;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+h4.ff-title {
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+}
