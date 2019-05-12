@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import store from '../../store';
+import {addFilter} from '../../actions/companiesListActions';
 
 const Search = (props) => {
 
@@ -11,7 +13,7 @@ const Search = (props) => {
         <div className={`input-group search-input-group${focused||props.searching ? ' active' : ''}`}>
           <input type="text" className="form-control" aria-describedby="search-button" 
               value={query}
-              onChange={(event)=>{setQuery(event.target.value)}}
+              onChange={(event)=>{setQuery(event.target.value); store.dispatch(addFilter('query', event.target.value))}}
               onFocus={()=>{setFocused(true)}} 
               onBlur={()=>{setFocused(false)}}
             />
