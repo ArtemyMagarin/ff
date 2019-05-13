@@ -27,13 +27,16 @@ const initialState = {
 }
 
 const doFilter = (companiesList, {regions, categories, maxScore, minScore, query}) => {
-    return companiesList.filter(company => (
+    console.log(Date.now())
+    const list = companiesList.filter(company => (
         company.score >= minScore &&
         company.score <= maxScore &&
         (regions.length === 0 || company.regions.some(region => ~regions.indexOf(region))) &&
         (categories.length === 0 || company.rubrics.some(category => ~categories.indexOf(category))) &&
         (query.length === 0 || ~company.company_name.toLowerCase().indexOf(query.toLowerCase()))
     ))
+    console.log(Date.now())
+    return list
 }
 
 
@@ -92,6 +95,7 @@ export default function companiesListReducer(state=initialState, action) {
             }
             return state
         default:
-            return state
+            return state;
     }
+    return state;
 }

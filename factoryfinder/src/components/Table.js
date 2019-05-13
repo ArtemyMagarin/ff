@@ -10,7 +10,7 @@ const Table = props => (
             </tr>
         </thead>
         <tbody>
-            {props.body.map((item, id) => item)}
+            {props.body}
         </tbody>
     </table>);
 
