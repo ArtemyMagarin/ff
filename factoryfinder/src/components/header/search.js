@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import store from '../../store';
+import history from '../../history';
 import {addFilter} from '../../actions/companiesListActions';
 
 const Search = (props) => {
@@ -16,7 +17,7 @@ const Search = (props) => {
               onBlur={()=>{setFocused(false)}}
             />
           <div className="input-group-append">
-            <button className="btn" type="button" id="search-button" onClick={() => {props.sendQuery(query)}} >
+            <button className="btn" type="submit" id="search-button" onClick={() => {history.push('/companies')}}>
                 {props.searching ? (<span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>) : 'Search'}
             </button>
           </div>

@@ -19,7 +19,7 @@ const Header = (props) => {
                     setSearching(true);
                     setQuery(query)
                 }} />
-                <div></div>
+                <Link to='/favorites'><img className="ff-logo" src={logo} alt="FactoryFinder Logo"/></Link>
             </header>
         </React.Fragment>
     )

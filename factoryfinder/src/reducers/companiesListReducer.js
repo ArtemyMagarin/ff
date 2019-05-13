@@ -44,7 +44,7 @@ export default function companiesListReducer(state=initialState, action) {
             const companiesList = [...action.data];
             return {
                 ...state, 
-                currentCompaniesList: [...action.data], 
+                currentCompaniesList: doFilter(companiesList, {...state.filter}), 
                 allCompaniesList: [...action.data], 
                 lists: {
                     allCategories: [...new Set(companiesList.reduce((categories, company) => ([...categories, ...company.rubrics]), []))],
