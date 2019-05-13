@@ -71,8 +71,7 @@ class FilterSection extends Component {
                     </div>
                 </div>
             </FilterCard>
-        </React.Fragment>
-        );
+        </React.Fragment>);
     }
 }
 

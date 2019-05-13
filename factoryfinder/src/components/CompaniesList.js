@@ -6,12 +6,15 @@ import * as companiesListActions from '../actions/companiesListActions';
 
 import Table from './Table';
 import FilterSection from './FilterSection';
+import Company from './Company';
+
 import page from '../styles/page.css';
 
 
 function mapStateToProps(state) {
     return {
         currentCompaniesList: state.companiesListReducer.currentCompaniesList,
+        allCompaniesList: state.companiesListReducer.allCompaniesList,
         fetchingPending: state.companiesListReducer.pending,
         fetchingError: state.companiesListReducer.error,
     }
@@ -70,6 +73,7 @@ class CompaniesList extends Component {
                     <FilterSection />
                 </div>
             </div>
+            {this.props.match.params.number && <Company history={this.props.history} {...this.props.allCompaniesList.filter(item => item.id=== +this.props.match.params.number)[0]} />}
         </div>)
     }
 }

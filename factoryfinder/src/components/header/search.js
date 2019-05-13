@@ -6,8 +6,6 @@ const Search = (props) => {
 
     let [focused, setFocused] = useState(false);
     let [query, setQuery] = useState('');
-
-
     
     return (<React.Fragment>
         <div className={`input-group search-input-group${focused||props.searching ? ' active' : ''}`}>

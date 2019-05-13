@@ -1,0 +1,71 @@
+.company-page {
+    position: fixed;
+    height: calc(100vh - 72px);
+    top: 72px;
+    right: 0;
+    width: 880px;
+    max-width: 100%;
+    overflow: auto;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.03), -5px 0 10px 0 rgba(0, 0, 0, 0.11);
+    background-color: #ffffff;
+    padding: 30px;
+}
+
+.company-page .ff-card {
+    height: calc(100% - 12px);
+}
+
+.company-page .title {
+    font-size: 23px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    margin-bottom: 16px;
+}
+
+.company-page .summary, 
+.company-page .description, {
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    margin-bottom: 20px;
+}
+.company-page .summary {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.company-page .buttons {
+    margin-bottom: 38px;
+}
+.company-page .btn {
+    margin-right: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+}
+
+.btn.ff-btn-primary {
+    color: #ffffff;
+    background-color: #3091ff;
+}
+.btn.ff-btn-primary:hover {
+    color: #ffffff;
+    background-color: #2080ee;
+}
+.btn.ff-btn-secondary{
+    color: #3091ff;
+    background-color: #ecf5ff;
+}
+.btn.ff-btn-secondary:hover {
+    color: #3091ff;
+    background-color: #ebf4fe;
+}
