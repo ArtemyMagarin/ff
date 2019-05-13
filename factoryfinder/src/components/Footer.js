@@ -2,7 +2,7 @@ import React from 'react';
 import home from '../styles/home.css'
 
 const Footer = props => (
-    <footer className="footer mt-auto">
+    <footer className="footer text-center">
         <div className="container">
             <span className="text-muted">
                 Цветной металлопрокат: Проволока, Цветной металлопрокат: Нихром, 

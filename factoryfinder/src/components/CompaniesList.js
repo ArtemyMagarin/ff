@@ -46,23 +46,22 @@ class CompaniesList extends Component {
 
     render() {
         const retry = (null);
+        let message = 'Search results';
 
         if (this.props.fetchingPending) {
-            return (<p>Fetching</p>)
+            message = 'Searching...';
+        } else if (this.props.fetchingError) {
+            message = 'Searching error';
+        } else if (this.props.currentCompaniesList.length === 0) {
+            message = 'Empty response';
         }
 
-        if (this.props.fetchingError) {
-            return (<p>Fetching error</p>)
-        }
-
-        if (this.props.currentCompaniesList.length === 0) {
-            return (<p>Empty list</p>)
-        }
+        const company = this.props.match.params.number && this.props.allCompaniesList.filter(item => item.id=== +this.props.match.params.number)[0]
 
         return (
         <div className="row mt-4">
             <div className="col-9">
-                <h4 className="ff-title">Search results</h4>
+                <h4 className="ff-title">{message}</h4>
                 <Table 
                     head={['', (<span className="arrow-down">Name</span>), 'Director', 'INN']}
                     body={this.props.currentCompaniesList.map((item, key) => <Row key={key} {...item} onClick={()=>{this.props.history.push(`/companies/${item.id}`)}}/>)}
@@ -70,10 +69,10 @@ class CompaniesList extends Component {
             </div>
             <div className="col-3">
                 <div id="filter-column" className="filter-column">
-                    <FilterSection />
+                    <FilterSection loading={this.props.fetchingPending}/>
                 </div>
             </div>
-            {this.props.match.params.number && <Company history={this.props.history} {...this.props.allCompaniesList.filter(item => item.id=== +this.props.match.params.number)[0]} />}
+            {company && <Company history={this.props.history} {...company} />}
         </div>)
     }
 }

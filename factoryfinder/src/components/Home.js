@@ -10,7 +10,7 @@ const Home = props => {
     return (
         <React.Fragment>
             <div className="row home">
-                <div className="col-12 col-md-9">
+                <div className="col-12 col-md-8 offset-md-2">
                     <h1>
                         FactoryFinder is a platform 
                         for finding business information 

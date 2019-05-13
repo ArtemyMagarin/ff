@@ -1,7 +1,7 @@
 .company-page {
     position: fixed;
-    height: calc(100vh - 72px);
-    top: 72px;
+    height: calc(100vh - 59px);
+    top: 59px;
     right: 0;
     width: 880px;
     max-width: 100%;

@@ -48,12 +48,18 @@ class FilterSection extends Component {
         regions.sort()
         scores.sort()
 
+        const spinner = (<div class="d-flex justify-content-center ff-text-brand-blue">
+          <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>)
+
         return (<React.Fragment>
             <FilterCard canExpand={true} cardTitle={'Categories'}>
-                {categories.map((item,id) => (<Checkbox key={id} onCheck={()=>{this.props.filterActions.addFilter('categories', item)}} onUncheck={()=>{this.props.filterActions.excludeFilter('categories', item)}}>{item}</Checkbox>))}
+                {this.props.loading ? spinner : categories.map((item,id) => (<Checkbox key={id} onCheck={()=>{this.props.filterActions.addFilter('categories', item)}} onUncheck={()=>{this.props.filterActions.excludeFilter('categories', item)}}>{item}</Checkbox>))}
             </FilterCard>
             <FilterCard canExpand={true} cardTitle={'Region'}>
-                {regions.map((item,id) => (<Checkbox key={id} onCheck={()=>{this.props.filterActions.addFilter('regions', item)}} onUncheck={()=>{this.props.filterActions.excludeFilter('regions', item)}}>{item}</Checkbox>))}
+                {this.props.loading ? spinner : regions.map((item,id) => (<Checkbox key={id} onCheck={()=>{this.props.filterActions.addFilter('regions', item)}} onUncheck={()=>{this.props.filterActions.excludeFilter('regions', item)}}>{item}</Checkbox>))}
             </FilterCard>
             <FilterCard cardTitle={'Score'}>
                 <div className="form-inline">
