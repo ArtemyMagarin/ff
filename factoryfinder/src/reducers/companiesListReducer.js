@@ -3,8 +3,7 @@ import {
     FETCH_COMPANIES__PENDING,
     FETCH_COMPANIES__ERROR,
     ADD_FILTER,
-    EXCLUDE_FILTER,
-    SEARCH_COMPANY
+    EXCLUDE_FILTER
 } from '../actions/companiesListActions'
 
 const initialState = {
@@ -92,6 +91,7 @@ export default function companiesListReducer(state=initialState, action) {
                 }
             }
             return state
+        default:
+            return state
     }
-    return state;
 }

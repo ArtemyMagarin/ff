@@ -8,7 +8,7 @@ import Table from './Table';
 import FilterSection from './FilterSection';
 import Company from './Company';
 
-import fav from '../heart-thin.svg';
+import fav from '../heart-filled.svg';
 
 
 import '../styles/page.css';
@@ -32,15 +32,15 @@ function mapDispatchToProps(dispatch) {
 const Row = (props) => {
     return (
         <tr onClick={()=>{props.onClick()}}>
-            <td><img src={fav} height="14" width="16" alt="Add to favorite"/></td>
             <td>{props.company_name||'N/A'}</td>
             <td className="ff-text-muted">{props.director||'N/A'}</td>
             <td className="ff-text-muted">{props.inn||'N/A'}</td>
+            <td><img src={fav} height="14" width="16" alt="Add to favorite"/></td>
         </tr>
     )
 }
 
-class CompaniesList extends Component {
+class FavoritesList extends Component {
     
 
     componentDidMount() {
@@ -48,32 +48,30 @@ class CompaniesList extends Component {
     }
 
     render() {
-        let message = 'Search results';
+        let message = 'Favorites';
         if (this.props.fetchingPending) {
-            message = 'Searching...';
+            message = 'Fetching...';
         } else if (this.props.fetchingError) {
-            message = 'Searching error';
+            message = 'Fetching error';
         } else if (this.props.currentCompaniesList.length === 0) {
-            message = 'Empty response';
+            message = 'No favorite companies yet';
         }
 
         const company = this.props.match.params.number && this.props.allCompaniesList.filter(item => item.id=== +this.props.match.params.number)[0]
 
         return (
         <div className="row mt-4">
-            <div className="col-9">
-                <h4 className="ff-title">{message}</h4>
+            <div className="col-12">
+                <div className="d-flex justify-content-between mb-4">
+                    <h4 className="ff-title mb-0">{message}</h4>
+                    <button role='button' className="btn ff-btn-primary">Place order</button>
+                </div>
                 <Table 
-                    head={['', (<span className="arrow-down">Name</span>), 'Director', 'INN']}
-                    body={this.props.currentCompaniesList.map((item, key) => <Row key={key} {...item} onClick={()=>{this.props.history.push(`/companies/${item.id}`)}}/>)}
+                    head={[(<span className="arrow-down">Name</span>), 'Director', 'INN', '']}
+                    body={this.props.currentCompaniesList.map((item, key) => <Row key={key} {...item} onClick={()=>{this.props.history.push(`/favorites/${item.id}`)}}/>)}
                 />
             </div>
-            <div className="col-3">
-                <div id="filter-column" className="filter-column">
-                    <FilterSection loading={this.props.fetchingPending}/>
-                </div>
-            </div>
-            {company && <Company onClose={()=>{this.props.history.push(`/companies`)}} {...company} />}
+            {company && <Company onClose={()=>{this.props.history.push(`/favorites`)}} {...company} />}
         </div>)
     }
 }
@@ -81,4 +79,4 @@ class CompaniesList extends Component {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(CompaniesList)
+)(FavoritesList)

@@ -1,8 +1,7 @@
 import React from 'react';
-import history from '../history';
 
 import FilterCard from './FilterCard';
-import product from '../styles/product.css';
+import '../styles/product.css';
 import cross from '../cross.svg';
 
 
@@ -16,8 +15,8 @@ const CardInfoInner = props => (
 const Company = props => {
     return (<div className="company-page">
         <div className="inner">
-            <button type="button" className="close" aria-label="Close" onClick={()=>{props.history.push('/companies')}}>
-              <span aria-hidden="true"><img src={cross} alt="" height='24' width='24'/></span>
+            <button type="button" className="close" aria-label="Close" onClick={()=>{props.onClose()}}>
+              <span aria-hidden="true"><img src={cross} alt="Close button" height='24' width='24'/></span>
             </button>
 
             <h2 className="title">{props.company_name}</h2>
@@ -40,17 +39,21 @@ const Company = props => {
                     <FilterCard cardTitle={'Contacts'}>
                         <CardInfoInner label={'Phone'} value={props.phone}/>
                         <CardInfoInner label={'Email'} value={props.email}/>
-                        <CardInfoInner label={'Site'} value={props.site && <a href={props.site} target="_blank">{props.site}</a>}/>
+                        <CardInfoInner label={'Site'} value={props.site && <a href={props.site} target="_blank" rel="noopener noreferrer">{props.site}</a>}/>
                     </FilterCard>
                 </div>
             </div>
             <div className="row">
                 <div className="col-12">
                     <FilterCard cardTitle={'Regions'}>
-                        {props.regions.map((item, i) => <React.Fragment key={i}><a href="#">{item}</a>{(i+1)!==props.regions.length&&', '}</React.Fragment>)}     
+                        {props.regions.map((item, i) => (<React.Fragment key={i}>
+                           <a href="#">{item}</a>
+                           {(i+1)!==props.regions.length&&', '}
+                        </React.Fragment>))} 
                     </FilterCard>
                 </div>
             </div>
+            {/*
             <div className="row">
                 <div className="col-12">
                     <FilterCard cardTitle={'Product Images'}>
@@ -63,6 +66,7 @@ const Company = props => {
                     <FilterCard cardTitle={'Employees'}></FilterCard>
                 </div>
             </div>
+            */}
             <div className="row">
                 <div className="col-12 col-md-6">
                     <FilterCard cardTitle={'Legal details'}>
@@ -85,7 +89,10 @@ const Company = props => {
             <div className="row">
                 <div className="col-12">
                     <FilterCard cardTitle={'Categories'}>
-                       {props.rubrics.map((item, i) => <React.Fragment key={i}><a href="#">{item}</a>{(i+1)!==props.rubrics.length&&', '}</React.Fragment>)}     
+                       {props.rubrics.map((item, i) => (<React.Fragment key={i}>
+                           <a href="#">{item}</a>
+                           {(i+1)!==props.rubrics.length&&', '}
+                        </React.Fragment>))}     
                     </FilterCard>
                 </div>
             </div>

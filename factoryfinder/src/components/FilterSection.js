@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -21,9 +21,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 const Checkbox = props => {
-    const checked = !!props.checked;
     const uniqId = String(Math.random()*Math.random()+Math.random()*Math.random());
-
     return (
         <div className="form-check">
           <input className="form-check-input" type="checkbox" onClick={(event)=>{ event.target.checked ? props.onCheck() : props.onUncheck()}} id={uniqId}/>
@@ -35,10 +33,7 @@ const Checkbox = props => {
 
 class FilterSection extends Component {
 
-    render() {
-
-        let companiesList = this.props.currentCompaniesList;
-        
+    render() {        
         let categories = this.props.lists.allCategories;
         let regions = this.props.lists.allRegions;
         let scores = this.props.lists.allScores;
@@ -48,9 +43,9 @@ class FilterSection extends Component {
         regions.sort()
         scores.sort()
 
-        const spinner = (<div class="d-flex justify-content-center ff-text-brand-blue">
-          <div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
+        const spinner = (<div className="d-flex justify-content-center ff-text-brand-blue">
+          <div className="spinner-border" role="status">
+            <span className="sr-only">Loading...</span>
           </div>
         </div>)
 

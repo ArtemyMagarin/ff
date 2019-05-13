@@ -8,7 +8,7 @@ import history from './history';
 import * as serviceWorker from './serviceWorker';
 
 import 'bootstrap/dist/css/bootstrap.css';
-import main from './styles/main.css';
+import './styles/main.css';
 
 ReactDOM.render((
     <Provider store={store}>

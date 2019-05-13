@@ -1,5 +1,4 @@
 import React from 'react';
-import home from '../styles/home.css'
 
 const Footer = props => (
     <footer className="footer text-center">

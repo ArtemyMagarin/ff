@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import home from '../styles/home.css'
 
 const Home = props => {
     

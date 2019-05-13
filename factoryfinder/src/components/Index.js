@@ -1,7 +1,7 @@
 import React from 'react';
 import Home from './Home';
 import Footer from './Footer';
-import home from '../styles/home.css'
+import '../styles/home.css'
 
 const Index = props => (
     <>

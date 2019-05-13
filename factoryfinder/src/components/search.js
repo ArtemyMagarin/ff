@@ -1,7 +1,6 @@
 import React from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import CompaniesList from './CompaniesList';
-import Company from './CompaniesList';
 
 const SearchResults = (props) => {
     return (
