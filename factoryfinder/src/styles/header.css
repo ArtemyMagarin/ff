@@ -7,6 +7,10 @@ header.header {
     border-bottom: 1px solid #e9e9e9;
 }
 
+header.header .links-wrapper {
+    min-width: 105px;
+}
+
 img.ff-logo {
     display: block;
     height: 12px;

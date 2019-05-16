@@ -81,7 +81,7 @@ class CompaniesList extends Component {
             <div className="col-12 col-lg-9">
                 <div className={'d-flex justify-content-between align-items-baseline mb-3'}>
                     <h4 className="ff-title mb-0 d-inline">{message}</h4>
-                    <a href="#" className="mb-0 d-lg-none" onClick={e => {this.toggleFilter()}}>
+                    <a href="#" className="mb-0 d-lg-none text-decoration-none" onClick={e => {this.toggleFilter()}}>
                         {this.state.showFilterSection ? 'Hide filter' : 'Show filter'}
                     </a>
                 </div>
@@ -92,8 +92,8 @@ class CompaniesList extends Component {
                     onCardClick={(id)=>{this.props.history.push(`/companies/${id}`)}}
                 />
             </div>
-            <div id="filter-column" className={`col-lg-3 filter-column ${this.state.showFilterSection ? '' : 'd-none'}`}>
-                <div className="d-flex d-lg-none justify-content-between align-items-baseline my-3">  
+            <div id="filter-column" className={`col-lg-3 filter-column ${this.state.showFilterSection ? '' : 'd-none d-lg-block'}`}>
+                <div className="d-flex d-lg-none justify-content-between align-items-baseline mt-2 mb-3">  
                     <h5 className={'d-inline mb-0'}>Filters</h5>
                     <button type="button" className="close" aria-label="Close" onClick={()=>{this.hideFilter()}}>
                         <span aria-hidden="true"><img src={cross} alt="Close button" height='24' width='24'/></span>

@@ -10,7 +10,7 @@ const Header = (props) => (
             <header className="header bg-white sticky-top">
                 <Link to='/'><img className="ff-logo" src={logo} alt="FactoryFinder Logo"/></Link>
                 <Search />
-                <div>
+                <div className="links-wrapper">
                     <Link to='/favorites'>
                         <img src={fav} height="14" width="16" className="mr-4" alt="Favorites"/>
                     </Link>

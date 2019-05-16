@@ -15,7 +15,7 @@ const Search = (props) => {
     }, [])
 
     return (<React.Fragment>
-        <div className={`input-group search-input-group${focused||props.searching ? ' active' : ''}`}>
+        <div className={`input-group search-input-group mx-4${focused||props.searching ? ' active' : ''}`}>
           <input type="text" className="form-control" id="search-input" aria-describedby="search-button" 
               value={query}
               onChange={(event)=>{setQuery(event.target.value); store.dispatch(addFilter('query', event.target.value))}}

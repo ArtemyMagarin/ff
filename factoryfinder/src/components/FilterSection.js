@@ -32,8 +32,10 @@ const Checkbox = props => {
 
 class FilterSection extends Component {
 
-    shouldComponentUpdate() {
-        return this.props.currentCompaniesList.length === 0
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.props.currentCompaniesList.length === 0 
+        || nextProps.filter.maxScore !== this.props.filter.maxScore
+        || nextProps.filter.minScore !== this.props.filter.minScore
     }
 
     render() {        
@@ -60,13 +62,13 @@ class FilterSection extends Component {
                       <div className="input-group-prepend">
                         <span className="input-group-text pl-0 border-0 bg-transparent" id="from-addon">From</span>
                       </div>
-                      <input type="number" className="form-control-plaintext" value={this.props.filter.minScore||0} onChange={(event)=>{this.props.filterActions.addFilter('minScore', +event.target.value)}} aria-label="from" aria-describedby="from-addon"/>
+                      <input type="number" className="form-control-plaintext" value={this.props.filter.minScore} onChange={(event)=>{this.props.filterActions.addFilter('minScore', event.target.value)}} aria-label="from" aria-describedby="from-addon"/>
                     </div>
                     <div className="input-group w-50">
                       <div className="input-group-prepend">
                         <span className="input-group-text pl-0 border-0 bg-transparent" id="to-addon">To</span>
                       </div>
-                      <input type="number" className="form-control-plaintext" value={this.props.filter.maxScore||0} onChange={(event)=>{this.props.filterActions.addFilter('maxScore', +event.target.value)}} aria-label="to" aria-describedby="to-addon"/>
+                      <input type="number" className="form-control-plaintext" value={this.props.filter.maxScore} onChange={(event)=>{this.props.filterActions.addFilter('maxScore', event.target.value)}} aria-label="to" aria-describedby="to-addon"/>
                     </div>
                 </div>
             </FilterCard>

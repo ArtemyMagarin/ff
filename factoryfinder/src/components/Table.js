@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { Component } from 'react';
 import '../styles/fftable.css';
 import Card from './Card';
 import { CardInfoInner } from './Company';
@@ -18,33 +18,44 @@ const ListCard = props => (
 );
 
 
-const ResponsiveTable = props => {
+class ResponsiveTable extends Component {
+    state = {
+        isMobile: window.outerWidth <= 768
+    }
     
-    const [isMobile, setMobile] = useState(window.outerWidth <= 768)
+    updateMobileView = e => this.setState({isMobile: window.outerWidth <= 768})
+    
+    componentDidMount() {
+        window.addEventListener('resize', this.updateMobileView, true)
+    }
 
-    useEffect(()=>{
-        const setMobileView = e => setMobile(window.outerWidth <= 768)
-        window.addEventListener('resize', setMobileView, true)
-        return () => { window.removeEventListener('resize', setMobileView, true) }
-    }, [])
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.updateMobileView, true)
+    }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.state.isMobile !== nextState.isMobile 
+            || this.props.body.length !== nextProps.body.length 
+    }
 
-    return (!isMobile || !props.mobileData) ? (<table className="table ff-table">
-        <thead>
-            <tr>
-                {props.head.map((item, id) => (
-                    <th key={id} scope="col">{item}</th>
-                ))}
-            </tr>
-        </thead>
-        <tbody>
-            {props.body}
-        </tbody>
-    </table>) : (props.mobileData.map((item, index) =>  (
-        <ListCard key={index} cardTitle={item.company_name||'N/A'} onClick={()=>{props.onCardClick(item.id)}} interactive={<img src={fav} className={'d-block ml-auto'} height="14" width="16" alt="Add to favorite"/>}>
-            <CardInfoInner label={'Director'} value={item.director}/>
-            <CardInfoInner label={'INN'} value={item.inn}/>
-        </ListCard>)))
+    render() {
+        return (!this.state.isMobile || !this.props.mobileData) ? (<table className="table ff-table">
+            <thead>
+                <tr>
+                    {this.props.head.map((item, id) => (
+                        <th key={id} scope="col">{item}</th>
+                    ))}
+                </tr>
+            </thead>
+            <tbody>
+                {this.props.body}
+            </tbody>
+        </table>) : (this.props.mobileData.map((item, index) =>  (
+            <ListCard key={index} cardTitle={item.company_name||'N/A'} onClick={()=>{this.props.onCardClick(item.id)}} interactive={<img src={fav} className={'d-block ml-auto'} height="14" width="16" alt="Add to favorite"/>}>
+                <CardInfoInner label={'Director'} value={item.director}/>
+                <CardInfoInner label={'INN'} value={item.inn}/>
+            </ListCard>)))
+    }
 }
 
 export default ResponsiveTable;
