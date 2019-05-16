@@ -29,4 +29,11 @@
 .table.ff-table th,
 .table.ff-table td {
     border-bottom: 1px solid #e9e9e9;
+    vertical-align: middle;
+}
+
+.td-inner {
+    display: block;
+    max-width: 25vw;
+    overflow: hidden;
 }

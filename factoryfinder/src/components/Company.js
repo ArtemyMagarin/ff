@@ -5,7 +5,7 @@ import '../styles/product.css';
 import cross from '../cross.svg';
 
 
-const CardInfoInner = props => (
+export const CardInfoInner = props => (
     <div className="row mb-2">
         <div className="col-4 ff-text-muted">{props.label}</div>
         <div className="col-8">{props.value || 'N/A'}</div>
@@ -99,7 +99,6 @@ const Company = props => {
         </div>
     </div>)
 }
-
 
 export default Company;
 

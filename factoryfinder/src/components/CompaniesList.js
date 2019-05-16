@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import * as companiesListActions from '../actions/companiesListActions';
-
-import Table from './Table';
+import { Tr, Td } from 'react-super-responsive-table'
+import ResponsiveTable from './Table';
 import FilterSection from './FilterSection';
 import Company from './Company';
 
@@ -32,9 +32,9 @@ function mapDispatchToProps(dispatch) {
 const Row = (props) => {
     return (
         <tr onClick={()=>{props.onClick()}}>
-            <td><img src={fav} height="14" width="16" alt="Add to favorite"/></td>
+            <td><img src={fav} className={'d-block mx-auto'} height="14" width="16" alt="Add to favorite"/></td>
             <td>{props.company_name||'N/A'}</td>
-            <td className="ff-text-muted">{props.director||'N/A'}</td>
+            <td title={props.director||'Director is not specified'} className="ff-text-muted"><span class="td-inner  text-truncate">{props.director||'N/A'}</span></td>
             <td className="ff-text-muted">{props.inn||'N/A'}</td>
         </tr>
     )
@@ -61,14 +61,16 @@ class CompaniesList extends Component {
 
         return (
         <div className="row mt-4">
-            <div className="col-9">
+            <div className="col-12 col-md-9">
                 <h4 className="ff-title">{message}</h4>
-                <Table 
+                <ResponsiveTable 
                     head={['', (<span className="arrow-down">Name</span>), 'Director', 'INN']}
                     body={this.props.currentCompaniesList.map((item, key) => <Row key={key} {...item} onClick={()=>{this.props.history.push(`/companies/${item.id}`)}}/>)}
+                    mobileData={this.props.currentCompaniesList}
+                    onCardClick={(id)=>{this.props.history.push(`/companies/${id}`)}}
                 />
             </div>
-            <div className="col-3">
+            <div className="d-none col-md-3">
                 <div id="filter-column" className="filter-column">
                     <FilterSection loading={this.props.fetchingPending}/>
                 </div>
