@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import * as companiesListActions from '../actions/companiesListActions';
-import { Tr, Td } from 'react-super-responsive-table'
 import ResponsiveTable from './Table';
 import FilterSection from './FilterSection';
 import Company from './Company';
 
 import fav from '../heart-thin.svg';
+import cross from '../cross.svg';
 
 
 import '../styles/page.css';
@@ -34,14 +34,31 @@ const Row = (props) => {
         <tr onClick={()=>{props.onClick()}}>
             <td><img src={fav} className={'d-block mx-auto'} height="14" width="16" alt="Add to favorite"/></td>
             <td>{props.company_name||'N/A'}</td>
-            <td title={props.director||'Director is not specified'} className="ff-text-muted"><span class="td-inner  text-truncate">{props.director||'N/A'}</span></td>
+            <td title={props.director||'Director is not specified'} className="ff-text-muted"><span className="td-inner text-truncate">{props.director||'N/A'}</span></td>
             <td className="ff-text-muted">{props.inn||'N/A'}</td>
         </tr>
     )
 }
 
 class CompaniesList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            showFilterSection: true,
+        }
+    }
     
+    showFilter() {
+        this.setState({showFilterSection: true})
+    }
+
+    hideFilter() {
+        this.setState({showFilterSection: false})
+    }
+
+    toggleFilter() {
+        this.setState({showFilterSection: !this.state.showFilterSection})
+    }
 
     componentDidMount() {
         this.props.companiesListActions.fetchCompanies();
@@ -61,8 +78,13 @@ class CompaniesList extends Component {
 
         return (
         <div className="row mt-4">
-            <div className="col-12 col-md-9">
-                <h4 className="ff-title">{message}</h4>
+            <div className="col-12 col-lg-9">
+                <div className={'d-flex justify-content-between align-items-baseline mb-3'}>
+                    <h4 className="ff-title mb-0 d-inline">{message}</h4>
+                    <a href="#" className="mb-0 d-lg-none" onClick={e => {this.toggleFilter()}}>
+                        {this.state.showFilterSection ? 'Hide filter' : 'Show filter'}
+                    </a>
+                </div>
                 <ResponsiveTable 
                     head={['', (<span className="arrow-down">Name</span>), 'Director', 'INN']}
                     body={this.props.currentCompaniesList.map((item, key) => <Row key={key} {...item} onClick={()=>{this.props.history.push(`/companies/${item.id}`)}}/>)}
@@ -70,10 +92,14 @@ class CompaniesList extends Component {
                     onCardClick={(id)=>{this.props.history.push(`/companies/${id}`)}}
                 />
             </div>
-            <div className="d-none col-md-3">
-                <div id="filter-column" className="filter-column">
-                    <FilterSection loading={this.props.fetchingPending}/>
+            <div id="filter-column" className={`col-lg-3 filter-column ${this.state.showFilterSection ? '' : 'd-none'}`}>
+                <div className="d-flex d-lg-none justify-content-between align-items-baseline my-3">  
+                    <h5 className={'d-inline mb-0'}>Filters</h5>
+                    <button type="button" className="close" aria-label="Close" onClick={()=>{this.hideFilter()}}>
+                        <span aria-hidden="true"><img src={cross} alt="Close button" height='24' width='24'/></span>
+                    </button>
                 </div>
+                <FilterSection loading={this.props.fetchingPending}/>
             </div>
             {company && <Company onClose={()=>{this.props.history.push(`/companies`)}} {...company} />}
         </div>)

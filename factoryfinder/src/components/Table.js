@@ -29,7 +29,7 @@ const ResponsiveTable = props => {
     }, [])
 
 
-    return !isMobile ? (<table className="table ff-table">
+    return (!isMobile || !props.mobileData) ? (<table className="table ff-table">
         <thead>
             <tr>
                 {props.head.map((item, id) => (

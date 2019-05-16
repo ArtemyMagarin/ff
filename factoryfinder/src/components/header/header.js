@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import header from './header.css';
+import header from '../../styles/header.css';
 import Search from './search';
 import { Link } from 'react-router-dom'
 import logo from '../../logo.svg';

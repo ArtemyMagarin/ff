@@ -21,7 +21,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 const Checkbox = props => {
-    // const uniqId = String(Math.random()*Math.random()+Math.random()*Math.random());
     return (
         <div className="form-check">
           <input className="form-check-input" type="checkbox" onClick={(event)=>{ event.target.checked ? props.onCheck() : props.onUncheck()}} id={`checkbox-${props.prefix}${props.id}`}/>
@@ -48,7 +47,6 @@ class FilterSection extends Component {
           </div>
         </div>)
 
-        console.log('RENDER')
         return (<React.Fragment>
             <FilterCard canExpand={true} cardTitle={'Categories'}>
                 {this.props.loading ? spinner : categories.map((item,id) => (<Checkbox key={id} id={id} prefix={'category'} onCheck={()=>{this.props.filterActions.addFilter('categories', item)}} onUncheck={()=>{this.props.filterActions.excludeFilter('categories', item)}}>{item}</Checkbox>))}

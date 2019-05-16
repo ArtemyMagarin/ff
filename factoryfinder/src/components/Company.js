@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 import FilterCard from './FilterCard';
 import '../styles/product.css';
@@ -13,6 +14,14 @@ export const CardInfoInner = props => (
 )
 
 const Company = props => {
+
+    useEffect(()=>{
+        const pageElement = document.querySelector('.company-page')
+        disableBodyScroll(pageElement)
+        return () => { enableBodyScroll(pageElement); clearAllBodyScrollLocks() }
+    }, [])
+
+
     return (<div className="company-page">
         <div className="inner">
             <button type="button" className="close" aria-label="Close" onClick={()=>{props.onClose()}}>
@@ -27,7 +36,7 @@ const Company = props => {
                 <button type="button" className="btn ff-btn-secondary">Download price list</button>
             </div>
             <div className="row">
-                <div className="col-12 col-md-6">
+                <div className="col-12 col-lg-6">
                     <FilterCard cardTitle={'Company details'}>
                         <CardInfoInner label={'Director'} value={props.director}/>
                         <CardInfoInner label={'Year'} value={props.year}/>
@@ -35,7 +44,7 @@ const Company = props => {
                         <CardInfoInner label={'Legal address'} value={props.legal_address}/>
                     </FilterCard>
                 </div>
-                <div className="col-12 col-md-6">
+                <div className="col-12 col-lg-6">
                     <FilterCard cardTitle={'Contacts'}>
                         <CardInfoInner label={'Phone'} value={props.phone}/>
                         <CardInfoInner label={'Email'} value={props.email}/>
@@ -68,7 +77,7 @@ const Company = props => {
             </div>
             */}
             <div className="row">
-                <div className="col-12 col-md-6">
+                <div className="col-12 col-lg-6">
                     <FilterCard cardTitle={'Legal details'}>
                         <CardInfoInner label={'Inn'} value={props.inn}/>
                         <CardInfoInner label={'Kpp'} value={props.kpp}/>
@@ -77,7 +86,7 @@ const Company = props => {
                         <CardInfoInner label={'Okved'} value={props.okved}/>
                     </FilterCard>
                 </div>
-                <div className="col-12 col-md-6">
+                <div className="col-12 col-lg-6">
                     <FilterCard cardTitle={'Banking details'}>
                         <CardInfoInner label={'Account'} value={props.account}/>
                         <CardInfoInner label={'Account cor'} value={props.account_cor}/>

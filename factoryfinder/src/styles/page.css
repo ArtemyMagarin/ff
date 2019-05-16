@@ -11,3 +11,19 @@ h4.ff-title {
     line-height: normal;
     letter-spacing: normal;
 }
+
+@media (max-width: 992px) {
+    .filter-column {
+        position: fixed!important;
+        right: 0;
+        height: calc(100vh - 70px);
+        max-width: 100%;
+        width: 250px!important;
+        top: 70px;
+        z-index: 900;
+        overflow: auto;
+        box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.03), -5px 0 10px 0 rgba(0, 0, 0, 0.11);
+        background-color: #ffffff;
+        padding: 15px;
+    }
+}
