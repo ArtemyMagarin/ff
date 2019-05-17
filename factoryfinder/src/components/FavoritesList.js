@@ -7,8 +7,7 @@ import * as companiesListActions from '../actions/companiesListActions';
 import Table from './Table';
 import FilterSection from './FilterSection';
 import Company from './Company';
-
-import fav from '../heart-filled.svg';
+import { Favorite } from './common';
 
 
 import '../styles/page.css';
@@ -35,7 +34,7 @@ const Row = (props) => {
             <td>{props.company_name||'N/A'}</td>
             <td className="ff-text-muted">{props.director||'N/A'}</td>
             <td className="ff-text-muted">{props.inn||'N/A'}</td>
-            <td><img src={fav} height="14" width="16" alt="Add to favorite"/></td>
+            <td><Favorite filled={true} className={'d-block mx-auto'}/></td>
         </tr>
     )
 }
@@ -69,6 +68,8 @@ class FavoritesList extends Component {
                 <Table 
                     head={[(<span className="arrow-down">Name</span>), 'Director', 'INN', '']}
                     body={this.props.currentCompaniesList.map((item, key) => <Row key={key} {...item} onClick={()=>{this.props.history.push(`/favorites/${item.id}`)}}/>)}
+                    mobileData={this.props.currentCompaniesList}
+                    onCardClick={(id)=>{this.props.history.push(`/companies/${id}`)}}
                 />
             </div>
             {company && <Company onClose={()=>{this.props.history.push(`/favorites`)}} {...company} />}

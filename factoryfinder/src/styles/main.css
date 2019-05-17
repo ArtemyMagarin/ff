@@ -1,7 +1,44 @@
+html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
 }
 
 .ff-text-brand-blue {
     color: #3091ff;
+}
+
+.ff-text-muted {
+    color: #777777!important;
+}
+
+
+.ff-text-bold {
+    font-weight: bold!important;
+}
+
+.favorite {
+    display: inline-flex;
+    background-color: #777777;
+    height: 24px;
+    width: 24px;
+    -webkit-mask-image: url('../heart-thin.svg');
+    mask-image: url('../heart-thin.svg');
+}
+
+.favorite.filled {
+    background-color: #ff0013;
+    -webkit-mask-image: url('../heart-filled.svg');
+    mask-image: url('../heart-filled.svg');
+}
+
+.favorite.black {
+    background-color: #333333;
+}
+
+.favorite.red {
+    background-color: #ff0013;
 }

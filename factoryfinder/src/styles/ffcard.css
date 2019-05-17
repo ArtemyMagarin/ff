@@ -12,6 +12,9 @@
     font-size: 14px;
     transition: height .15s ease-in-out;
 }
+.ff-card .title {
+    max-width: calc(100% - 24px);
+}
 
 .ff-card.expandable .inner {
     max-height: 80px;

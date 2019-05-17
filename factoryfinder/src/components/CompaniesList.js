@@ -7,9 +7,9 @@ import ResponsiveTable from './Table';
 import FilterSection from './FilterSection';
 import Company from './Company';
 
-import fav from '../heart-thin.svg';
-import cross from '../cross.svg';
+import { Favorite, Checkmark, Pill } from './common';
 
+import cross from '../cross.svg';
 
 import '../styles/page.css';
 
@@ -32,9 +32,11 @@ function mapDispatchToProps(dispatch) {
 const Row = (props) => {
     return (
         <tr onClick={()=>{props.onClick()}}>
-            <td><img src={fav} className={'d-block mx-auto'} height="14" width="16" alt="Add to favorite"/></td>
-            <td>{props.company_name||'N/A'}</td>
-            <td title={props.director||'Director is not specified'} className="ff-text-muted"><span className="td-inner text-truncate">{props.director||'N/A'}</span></td>
+            <td><Favorite filled={true} className={'d-block mx-auto'}/></td>
+            <td>{props.company_name||'N/A'}{props.is_active&&<Checkmark/>}</td>
+            <td title={props.director||'Director is not specified'} className="ff-text-muted">
+                <span className="td-inner text-truncate">{props.director||'N/A'}</span>
+            </td>
             <td className="ff-text-muted">{props.inn||'N/A'}</td>
         </tr>
     )
@@ -44,7 +46,7 @@ class CompaniesList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            showFilterSection: true,
+            showFilterSection: false, // on mobile view only, on desktop filter section always shows 
         }
     }
     

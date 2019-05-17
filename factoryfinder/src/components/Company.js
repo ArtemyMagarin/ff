@@ -3,8 +3,15 @@ import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'bo
 
 import FilterCard from './FilterCard';
 import '../styles/product.css';
+import '../styles/employeecard.css';
+import '../styles/productimages.css';
 import cross from '../cross.svg';
+import female from '../female.jpeg'
+import male from '../male.jpeg'
 
+import holderjs from 'holderjs'
+
+import { Checkmark, Pill } from './common';
 
 export const CardInfoInner = props => (
     <div className="row mb-2">
@@ -12,6 +19,23 @@ export const CardInfoInner = props => (
         <div className="col-8">{props.value || 'N/A'}</div>
     </div>
 )
+
+const EmployeeCard = props => {
+    return (
+        <div className="employee-card">
+            <img src={props.avatar} alt="" className={'avatar'}/>
+            <div className="employee-info">
+                <p className="employee-card-text ff-text-bold">{props.name}</p>
+                <p className="employee-card-text ff-text-muted">{props.role}</p>
+                <p className="employee-card-text">{props.phone}</p>
+                <a href={`mailto:${props.email}`} className="employee-card-text">{props.email}</a>
+            </div>
+        </div>
+    )
+}
+
+
+
 
 const Company = props => {
 
@@ -21,6 +45,15 @@ const Company = props => {
         return () => { enableBodyScroll(pageElement); clearAllBodyScrollLocks() }
     }, [])
 
+    useEffect(()=>{
+        holderjs.run({
+            domain: 'holder.js',
+            images: [...document.querySelectorAll('img.placeholder')],
+            object: null,
+            bgnodes: null,
+            stylenodes: null
+        });
+    }, [])
 
     return (<div className="company-page">
         <div className="inner">
@@ -28,7 +61,11 @@ const Company = props => {
               <span aria-hidden="true"><img src={cross} alt="Close button" height='24' width='24'/></span>
             </button>
 
-            <h2 className="title">{props.company_name}</h2>
+            <h2 className="title">
+                {props.company_name}
+                {props.is_Active && <Checkmark/>}
+                <Pill>{props.score}</Pill>     
+            </h2>
             <h5 className="summary">{props.summary}</h5>
             <p className="description">{props.description}</p>
             <div className="buttons">
@@ -62,20 +99,48 @@ const Company = props => {
                     </FilterCard>
                 </div>
             </div>
-            {/*
             <div className="row">
                 <div className="col-12">
-                    <FilterCard cardTitle={'Product Images'}>
-                        
+                    <FilterCard cardTitle={'Product Images'} canExpand={true} innerClass={'product-images-list-inner'}>
+                        <div className="product-images-list">
+                            <img class="placeholder" src="holder.js/125x125" alt=""/>
+                            <img class="placeholder" src="holder.js/125x125" alt=""/>
+                            <img class="placeholder" src="holder.js/125x125" alt=""/>
+                            <img class="placeholder" src="holder.js/125x125" alt=""/>
+                            <img class="placeholder" src="holder.js/125x125" alt=""/>
+                            <img class="placeholder" src="holder.js/125x125" alt=""/>
+                        </div>
+                                
+
                     </FilterCard>
                 </div>
             </div>
             <div className="row">
                 <div className="col-12">
-                    <FilterCard cardTitle={'Employees'}></FilterCard>
+                    <FilterCard cardTitle={'Employees'} canExpand={true} innerClass={'employees-inner'}>
+                        <div className="row">
+                            <div className="col-12 col-lg-6">
+                                <EmployeeCard 
+                                    avatar={female} 
+                                    name={'Patricia Ford'} 
+                                    role={'CEO'} 
+                                    phone={'+7 921 123-45-67'} 
+                                    email={'patricia@alfacomplect.ru'} 
+                                />
+                            </div>
+                            <div className="col-12 col-lg-6">
+                                <EmployeeCard 
+                                    avatar={male} 
+                                    name={'Anthony Warren'} 
+                                    role={'CTO'} 
+                                    phone={'+7 921 123-45-67'} 
+                                    email={'anthony@alfacomplect.ru'} 
+                                />
+                            </div>
+                        </div>
+                    </FilterCard>
                 </div>
             </div>
-            */}
             <div className="row">
                 <div className="col-12 col-lg-6">
                     <FilterCard cardTitle={'Legal details'}>

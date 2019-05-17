@@ -4,6 +4,10 @@ export const FETCH_COMPANIES = 'FETCH_COMPANIES'
 export const FETCH_COMPANIES__PENDING = 'FETCH_COMPANIES__PENDING'
 export const FETCH_COMPANIES__ERROR = 'FETCH_COMPANIES__ERROR'
 
+export const FETCH_COMPANY = 'FETCH_COMPANY'
+export const FETCH_COMPANY__PENDING = 'FETCH_COMPANY__PENDING'
+export const FETCH_COMPANY__ERROR = 'FETCH_COMPANY__ERROR'
+
 
 export const ADD_FILTER = 'SET_FILTER'
 export const EXCLUDE_FILTER = 'EXCLUDE_FILTER'
@@ -17,6 +21,17 @@ export function fetchCompanies() {
             method: 'GET',
             data: {},
             url: '/companies.json'
+        }
+    }
+}
+
+export function fetchCompany(id) {
+    return {
+        type: FETCH_COMPANY,
+        api: {
+            method: 'GET',
+            data: { id },
+            url: '/company.json'
         }
     }
 }

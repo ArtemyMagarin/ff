@@ -6,9 +6,15 @@ header.header {
     align-items: center;
     border-bottom: 1px solid #e9e9e9;
 }
+.links-wrapper {
+    display: flex;
+    align-items: center;
+}
 
-header.header .links-wrapper {
-    min-width: 105px;
+@media (min-width: 576px) {
+    header.header .links-wrapper {
+        min-width: 105px;
+    }
 }
 
 img.ff-logo {
@@ -51,4 +57,8 @@ img.ff-logo {
     background-color: #3091ff;
     border-color: #3091ff;
     pointer-events: all;
+}
+
+.cursor-pointer {
+    cursor: pointer;
 }

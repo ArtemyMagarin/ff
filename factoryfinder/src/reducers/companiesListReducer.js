@@ -2,6 +2,9 @@ import {
     FETCH_COMPANIES,
     FETCH_COMPANIES__PENDING,
     FETCH_COMPANIES__ERROR,
+    FETCH_COMPANY,
+    FETCH_COMPANY__PENDING,
+    FETCH_COMPANY__ERROR,
     ADD_FILTER,
     EXCLUDE_FILTER
 } from '../actions/companiesListActions'
@@ -11,6 +14,8 @@ const initialState = {
     currentCompaniesList: [],
     pending: false,
     error: false,
+
+    selectedCompany: null,
 
     lists: {
         allCategories: [],
@@ -65,6 +70,18 @@ export default function companiesListReducer(state=initialState, action) {
             return {...state, pending: true}
         case FETCH_COMPANIES__ERROR: 
             return {...state, pending: false, error: true}
+
+        case FETCH_COMPANY: 
+            return {
+                ...state, 
+                selectedCompany: {...action.data},
+                pending: false,
+                error: false,
+            }
+        case FETCH_COMPANY__PENDING:
+            return {...state, selectedCompany: null, pending: true}
+        case FETCH_COMPANY__ERROR: 
+            return {...state, selectedCompany: null, pending: false, error: true}
 
         case ADD_FILTER:
             if (state.filter[action.data.key] !== undefined) {

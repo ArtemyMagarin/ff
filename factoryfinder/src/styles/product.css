@@ -1,10 +1,10 @@
 .company-page {
     position: fixed;
     right: 0;
-    height: 100vh;
     max-width: 100%;
     width: 100%;
     top: 0;
+    bottom: 0;
     z-index: 2000;
     overflow: auto;
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.03), -5px 0 10px 0 rgba(0, 0, 0, 0.11);
@@ -14,15 +14,15 @@
 
 @media (min-width: 768px) {
 .company-page {
-    height: calc(100vh - 70px);
     top: 70px;
+    bottom: 0;
     width: 464px;
     z-index: 1000;
 }}
 
 @media (min-width: 992px) {
 .company-page {
-    width: 880px;
+    width: 886px;
 }}
 
 .company-page .ff-card {
@@ -66,6 +66,37 @@
     line-height: normal;
     letter-spacing: normal;
 }
+
+.pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 8px;
+    border-radius: 11.5px;
+    background-color: #fff0c5;
+    font-size: 11px;
+    color: #be7200;
+    margin-left: 5px;
+}
+.pill:before {
+    content: '';
+    display: flex;
+    align-content: center;
+    margin-right: 5px;
+    height: 14px;
+    width: 14px;
+    background-image: url('../star.svg');
+    background-position: center;
+    background-size: contain;
+
+}
+
+.checkmark {
+    display: inline-flex;
+    height: 24px;
+    width: 24px;
+    margin-left: 5px;
+}
+
 
 .btn.ff-btn-primary {
     color: #ffffff;
