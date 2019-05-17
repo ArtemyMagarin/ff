@@ -12,6 +12,7 @@ import {
 const initialState = {
     allCompaniesList: [],
     currentCompaniesList: [],
+    favoriteCompaniesList: [],
     pending: false,
     error: false,
 
@@ -52,6 +53,7 @@ export default function companiesListReducer(state=initialState, action) {
             return {
                 ...state, 
                 currentCompaniesList: doFilter(companiesList, {...state.filter}), 
+                favoriteCompaniesList: [...companiesList.slice(10, 30)],
                 allCompaniesList: [...action.data], 
                 lists: {
                     allCategories: [...new Set(companiesList.reduce((categories, company) => ([...categories, ...company.rubrics]), []))],
@@ -74,7 +76,7 @@ export default function companiesListReducer(state=initialState, action) {
         case FETCH_COMPANY: 
             return {
                 ...state, 
-                selectedCompany: {...action.data},
+                selectedCompany: action.data,
                 pending: false,
                 error: false,
             }

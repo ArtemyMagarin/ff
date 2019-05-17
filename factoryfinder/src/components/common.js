@@ -14,3 +14,10 @@ export const Checkmark = props => (
 export const Pill = props => (
     <span className="pill">{props.children}</span>
 )
+
+export const Spinner = props => (
+    <div className="d-flex justify-content-center ff-text-brand-blue">
+          <div className="spinner-border" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
+    </div>)

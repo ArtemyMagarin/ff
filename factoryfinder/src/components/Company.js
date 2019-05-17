@@ -55,7 +55,7 @@ const Company = props => {
         });
     }, [])
 
-    return (<div className="company-page">
+    return (<div className={`company-page ${props.className||''}`}>
         <div className="inner">
             <button type="button" className="close" aria-label="Close" onClick={()=>{props.onClose()}}>
               <span aria-hidden="true"><img src={cross} alt="Close button" height='24' width='24'/></span>

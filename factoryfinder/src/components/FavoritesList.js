@@ -15,7 +15,7 @@ import '../styles/page.css';
 
 function mapStateToProps(state) {
     return {
-        currentCompaniesList: state.companiesListReducer.currentCompaniesList,
+        currentCompaniesList: state.companiesListReducer.favoriteCompaniesList,
         allCompaniesList: state.companiesListReducer.allCompaniesList,
         fetchingPending: state.companiesListReducer.pending,
         fetchingError: state.companiesListReducer.error,
